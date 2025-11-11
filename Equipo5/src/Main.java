@@ -7,17 +7,16 @@ public class Main {
     public static void equipos() {
         Scanner sc = new Scanner(System.in);
 
-        // Registrar equipo
         System.out.println("Introduce el nombre del equipo: ");
         NombreEquipo = sc.nextLine();
 
         System.out.println("Introduce el numero de jugadores del equipo: ");
         NumeroJugadores = sc.nextInt();
-        sc.nextLine(); // Limpiar buffer
+        sc.nextLine();
 
         System.out.println("\nEquipo " + NombreEquipo + " registrado con " + NumeroJugadores + " jugadores.");
 
-        // Llamar a la función para inscribir los jugadores inmediatamente
+
         jugadores();
     }
 
@@ -37,7 +36,7 @@ public class Main {
 
             System.out.print("Dorsal: ");
             int dorsal = sc.nextInt();
-            sc.nextLine(); // limpiar buffer
+            sc.nextLine();
 
             System.out.println("Jugador registrado: " + nombre + " " + apellido + ", Edad: " + edad + ", Dorsal: " + dorsal);
         }
@@ -56,11 +55,11 @@ public class Main {
 
             try {
                 int respuesta = sc.nextInt();
-                sc.nextLine(); // limpiar buffer
+                sc.nextLine();
 
                 switch (respuesta) {
                     case 1:
-                        equipos(); // Esto llamará automáticamente a jugadores()
+                        equipos();
                         break;
                     case 2:
                         salir = true;
@@ -71,7 +70,7 @@ public class Main {
                 }
             } catch (Exception e) {
                 System.out.println("No has escogido una opción correcta.");
-                sc.nextLine(); // limpiar buffer en caso de error
+                sc.nextLine();
             }
         }
     }
