@@ -1,45 +1,78 @@
 import java.util.Scanner;
+
 public class Main {
     static int NumeroJugadores = 0;
-    public static void equipos(){
-    Scanner sc = new Scanner(System.in);
-    System.out.println("Introduce el nombre de la equipo: ");
-    String NombreEquipo = sc.nextLine();
-    System.out.println("Introduce el numero de jugadores del equipo: ");
-    NumeroJugadores = sc.nextInt();
-    }
-    public static void jugadores(){
+    static String NombreEquipo;
+
+    public static void equipos() {
         Scanner sc = new Scanner(System.in);
+
+        // Registrar equipo
+        System.out.println("Introduce el nombre del equipo: ");
+        NombreEquipo = sc.nextLine();
+
+        System.out.println("Introduce el numero de jugadores del equipo: ");
+        NumeroJugadores = sc.nextInt();
+        sc.nextLine(); // Limpiar buffer
+
+        System.out.println("\nEquipo " + NombreEquipo + " registrado con " + NumeroJugadores + " jugadores.");
+
+        // Llamar a la función para inscribir los jugadores inmediatamente
+        jugadores();
+    }
+
+    public static void jugadores() {
+        Scanner sc = new Scanner(System.in);
+
         for (int i = 1; i <= NumeroJugadores; i++) {
-            System.out.println("\nJugador " + i + ":");
+            System.out.println("\nJugador " + i + " del equipo " + NombreEquipo + ":");
             System.out.print("Nombre: ");
             String nombre = sc.nextLine();
+
             System.out.print("Apellido: ");
             String apellido = sc.nextLine();
+
             System.out.print("Edad: ");
             int edad = sc.nextInt();
+
             System.out.print("Dorsal: ");
             int dorsal = sc.nextInt();
-            sc.nextLine();
-        }
-    }
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("======== MENU ======== \n" +
-                "1- Inscribir Equipo \n" +
-                "2- Inscribir Jugadores");
-        try {
-            int respuesta = sc.nextInt();
-            if (respuesta == 1) {
-                equipos();
-            }
-            if (respuesta == 2) {
-                jugadores();
-            }
-        }
-        catch(Exception e) {
-            System.out.println("no has escogido una opcion correcta");
+            sc.nextLine(); // limpiar buffer
+
+            System.out.println("Jugador registrado: " + nombre + " " + apellido + ", Edad: " + edad + ", Dorsal: " + dorsal);
         }
 
+        System.out.println("\nTodos los jugadores del equipo " + NombreEquipo + " han sido registrados.");
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        boolean salir = false;
+
+        while (!salir) {
+            System.out.println("\n======== MENU ========\n" +
+                    "1- Inscribir Equipo y Jugadores\n" +
+                    "2- Salir");
+
+            try {
+                int respuesta = sc.nextInt();
+                sc.nextLine(); // limpiar buffer
+
+                switch (respuesta) {
+                    case 1:
+                        equipos(); // Esto llamará automáticamente a jugadores()
+                        break;
+                    case 2:
+                        salir = true;
+                        System.out.println("Saliendo del programa...");
+                        break;
+                    default:
+                        System.out.println("Opción no válida, intenta de nuevo.");
+                }
+            } catch (Exception e) {
+                System.out.println("No has escogido una opción correcta.");
+                sc.nextLine(); // limpiar buffer en caso de error
+            }
         }
     }
+}
